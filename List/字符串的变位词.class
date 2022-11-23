@@ -1,0 +1,53 @@
+package p;
+import java.util.ArrayList;
+import java.util.List;
+public class test 
+{
+	public boolean checkInclusion(String s1, String s2) 
+	{
+		List<String> list=new ArrayList<String>();
+		List<String> list2=new ArrayList<String>();
+		List<String> temp;
+		int length=0; //剩余长度
+		for(int i=0;i<s1.length();i++) //将s1拆分
+			list.add(s1.charAt(i)+"");
+		for(int i=0;i<s2.length();i++) //将s2拆分
+			list2.add(s2.charAt(i)+"");
+		
+		int nums=list.size(); //记录s1的长度
+		int num=0; //记录已有长度
+		temp=new ArrayList<String>(list); //保存s1的内容
+		//System.out.println(temp);		
+		for(int i=0;i<list2.size();i++) //逐个匹配
+		{
+			if(temp.contains(list2.get(i))==true && temp.size()>0) //如果s1包含当前s2的字母
+			{
+				num++;
+				temp.remove(list2.get(i));
+				System.out.print(temp+" ");	
+				System.out.println(num);	
+			}
+			else if(temp.contains(list2.get(i))==false) //如果不包含
+			{
+				temp=new ArrayList<String>(list); //重新从i位置再次匹配一遍
+				
+			    if((list2.size()-i)<nums) //不可能再满足
+			    	return false;			    
+			    num=0;
+			}
+			if(num==nums)
+				return true;
+		}
+				
+		return false;
+    }
+	public static void main(String[] args) 
+	{
+		test t=new test();
+		if(t.checkInclusion("adc", "dcda")==true)
+			System.out.println("true");
+		else
+			System.out.println("false");
+	}
+	
+}
