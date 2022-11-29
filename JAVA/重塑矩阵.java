@@ -24,6 +24,7 @@ class Solution {
     {
     	int[][] s=new int[r][c];
     	int nums=mat.length*mat[0].length; //得到二维数组元素个数
+	//先检测数组中的元素是否足够满足构成新数组
     	if(nums!=r*c) //不满足，返回原来二维数组
     		return mat;
     	
